@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleApplicationJva</string>
+    <string name="hello_text">한글 안녕</string>
+    <string name="button_text">Button</string>
+</resources>

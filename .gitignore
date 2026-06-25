@@ -1,0 +1,37 @@
+# Gradle / build output
+.gradle/
+**/build/
+
+# Local SDK path (개인 환경 경로)
+local.properties
+
+# IDE files (Android Studio / IntelliJ)
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Signing files (민감 정보)
+*.jks
+*.keystore
+
+# Logs
+*.log
+#상황에 따라 선택할 항목Permalink
+#아래 항목은 팀 정책에 따라 포함/제외를 결정하면 됩니다.
+
+# Kotlin/Java crash logs
+hs_err_pid*
+
+# Captures and generated artifacts
+captures/
+
+# If you use NDK/CMake
+.cxx/
+externalNativeBuild/
+
+# Firebase / Google service files
+# 보통은 커밋하지만, 회사 정책상 분리 관리 시 ignore 가능
+# google-services.json
