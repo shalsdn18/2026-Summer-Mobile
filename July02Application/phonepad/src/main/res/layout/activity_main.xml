@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:text="010-0000-0000"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button2"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="2&#10;ABC" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button3"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="3&#10;DEF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button4"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="4&#10;GHI" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button5"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="5&#10;JKL" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button6"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="6&#10;MNO" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button7"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="7&#10;PQRS" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button8"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="8&#10;TUV" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button9"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="9&#10;WXYZ" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button10"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="*" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button11"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="0&#10;+" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button12"
+                style="@style/Widget.Phonepad.KeypadButton"
+                android:text="#" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonVideoCall"
+                style="@style/Widget.Phonepad.ActionButton"
+                android:text="영상통화" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDial"
+                style="@style/Widget.Phonepad.ActionButton"
+                android:text="다이얼링" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDelete"
+                style="@style/Widget.Phonepad.ActionButton"
+                android:text="삭제" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
