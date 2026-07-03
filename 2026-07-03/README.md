@@ -49,7 +49,7 @@
 │                    ⬇                     │
 │       [ BiometricPrompt 보안 모달 ]      │
 └──────────────────────────────────────────┘
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\toss인증.jpg"
+* <img src="toss인증.jpg" width="320">
 
 ```
 
@@ -62,7 +62,7 @@
 
 
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림1.jpg"
+* <img src="그림1.jpg" width="320">
 
 
 
@@ -75,7 +75,7 @@
 * **컴포넌트:** `RecyclerView`, `DiffUtil`
 * **기능 명세:** 국내외 주식 시장의 실시간 거래대금, 거래량, 급상승, 급하락 순위 데이터를 UI 스레드 중단 없이 리스트로 드로잉합니다.
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림2.jpg"
+* <img src="그림2.jpg" width="320">
 
 
 
@@ -88,7 +88,7 @@
 * **컴포넌트:** `com.github.mikephil.charting.charts.LineChart`
 * **기능 명세:** 축 지표를 과감히 제거하고 1일, 1주, 3달, 1년 단위의 가격 변동 곡선만 매끄러운 캔버스로 시각화합니다.
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림3.jpg"
+* <img src="그림3.jpg" width="320">
 
 
 
@@ -101,7 +101,7 @@
 * **컴포넌트:** `CandleStickChart`, `ViewStub`
 * **기능 명세:** 종목 차트 영역 내 '자세한 차트' 제어 플래그 감색 시 캔들스틱 및 거래량 이동평균선 격자를 하단에 동적 렌더링합니다[cite: 6].
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림4.jpg"
+* <img src="그림4.jpg" width="320">
 
 
 
@@ -112,7 +112,7 @@
 * **컴포넌트:** `TableLayout`, `TableRow`
 * **기능 명세:** **PER**, **PBR**, **ROE** 등 핵심 투자 지표 데이터와 당일 시세(최저, 최고, 시작, 종가, 거래량) 및 투자자 동향 격자를 2열 구조로 시인성 있게 출력합니다[cite: 4, 8].
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림5.jpg"
+* <img src="그림5.jpg" width="320">
 
 
 ---
@@ -122,7 +122,7 @@
 * **컴포넌트:** `NestedScrollView`, `CardView`
 * **기능 명세:** 상단 레이아웃 내에 토스증권 AI 실시간 이슈 브리핑 시그널 배너를 탑재하고 스크롤 흔들림 제어 기능이 적용된 카드 뷰 형태로 뉴스를 바인딩합니다[cite: 5, 10].
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림6.jpg"
+* <img src="그림6.jpg" width="320">
 
 
 ---
@@ -132,8 +132,8 @@
 * **컴포넌트:** `BottomSheetDialog`, `InsetsController`
 * **기능 명세:** 최하단 영역에 고정된 구매하기/판매하기 버튼 상호작용 시 화면 밖 이탈이 차단된 상태로 슬라이딩 오픈되는 주문 인터페이스 창구입니다[cite: 1].
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림7.jpg"
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림8.jpg"
+* <img src="그림7.jpg" width="320">
+* <img src="그림8.jpg" width="320">
 
 
 ---
@@ -143,8 +143,8 @@
 * **컴포넌트:** `ConstraintLayout`, FSM State Tracker
 * **기능 명세:** 투자 주행 상태 머신(Sealed Class)을 기반으로 올웨더, 워렌버핏 등 포트폴리오 단위 혹은 개별 종목 주식 모으기 스케줄을 예약 제어합니다[cite: 2].
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림9.jpg"
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림10.jpg"
+* <img src="그림9.jpg" width="320">
+* <img src="그림10.jpg" width="320">
 
 ---
 
@@ -153,9 +153,9 @@
 * **컴포넌트:** `ConstraintLayout`, `DataBinding`
 * **기능 명세:** 매수 평균가(평단가)와 현재 시장 평가액 변동 추이를 실시간 연산하여, 투자 수익률이 양수이면 Red, 음수이면 Blue로 시스템 캐시 컬러 코드를 타겟 매핑하여 실시간 출력합니다[cite: 1, 3].
 * **레퍼런스 이미지 매핑:**
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림11.jpg"
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림12.jpg"
-* "C:\Users\User\AndroidStudioProjects\2026-ipp\2026-07-03\그림13.jpg"
+* <img src="그림11.jpg" width="320">
+* <img src="그림12.jpg" width="320">
+* <img src="그림13.jpg" width="320">
 
 
 ---
