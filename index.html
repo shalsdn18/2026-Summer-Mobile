@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>벤치마킹 선정 이유 - 토스인베스트 클론</title>
+    <style>
+        /* 토스 고유의 미니멀리즘 디자인 시스템 원포인트 테마 */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        body { background-color: #F2F4F6; color: #191F28; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden; }
+        
+        /* 슬라이드 컨테이너 */
+        .slide-container { width: 100%; max-width: 900px; height: 600px; background: #FFFFFF; border-radius: 24px; box-shadow: 0 12px 40px rgba(0,0,0,0.04); display: none; padding: 50px; position: relative; }
+        .slide-container.active { display: flex; flex-direction: column; justify-content: space-between; animation: fadeIn 0.4s ease-in-out; }
+        
+        /* 헤더 아키텍처 */
+        .slide-header { border-bottom: 2px solid #F2F4F6; padding-bottom: 20px; }
+        .page-indicator { color: #3182F6; font-size: 14px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; }
+        .slide-title { font-size: 28px; font-weight: 800; color: #191F28; letter-spacing: -0.5px; }
+        
+        /* 본문 데이터 구역 */
+        .slide-body { flex-grow: 1; margin-top: 35px; }
+        .core-concept { font-size: 18px; font-weight: 600; color: #4E5968; margin-bottom: 20px; line-height: 1.5; }
+        .tech-list { list-style: none; }
+        .tech-list li { position: relative; padding-left: 24px; margin-bottom: 16px; font-size: 16px; line-height: 1.6; color: #4E5968; }
+        .tech-list li::before { content: "•"; color: #3182F6; font-weight: bold; font-size: 20px; position: absolute; left: 5px; top: -2px; }
+        .tech-list li strong { color: #191F28; }
+        
+        /* 하단 컨트롤러 패널 */
+        .slide-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F2F4F6; padding-top: 20px; }
+        .nav-btn { background: #E5E8EB; color: #4E5968; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .nav-btn:hover { background: #D1D6DB; color: #191F28; }
+        .nav-btn.primary { background: #3182F6; color: #FFFFFF; }
+        .nav-btn.primary:hover { background: #1B64DA; }
+        .nav-btn:disabled { background: #F2F4F6; color: #B0B8C1; cursor: not-allowed; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1 -->
+    <div class="slide-container active" id="slide1">
+        <div class="slide-header">
+            <div class="page-indicator">Reason 01</div>
+            <h1 class="slide-title">렌더링 파이프라인 최적화 및 평탄 구조 학습</h1>
+        </div>
+        <div class="slide-body">
+            <p class="core-concept">안드로이드 UI 성능 저하의 주원인인 다중 중첩 뷰(Nesting Layout)의 물리적 소거</p>
+            <ul class="tech-list">
+                <li><strong>Flat Hierarchy 강제 수립:</strong> 토스증권 고유의 선형적이고 간결한 레이아웃을 모방하여 계층 구조를 최적화합니다.</li>
+                <li><strong>ConstraintLayout 제약 극대화:</strong> 컴포넌트 간 관계선 설계를 고도화하여 Overdraw(중복 드로잉)를 무력화하는 아키텍처를 세팅합니다.</li>
+                <li><strong>가비지 컬렉터(GC) 가동 부하 완화:</strong> 불필요한 뷰 인플레이션 단계를 삭제하여 120Hz 주사율 단말 환경에서 끊김 없는 프레임 레이트를 보증합니다.</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <button class="nav-btn" disabled>이전</button>
+            <button class="nav-btn primary" onclick="moveSlide(2)">다음 이유 보기</button>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide-container" id="slide2">
+        <div class="slide-header">
+            <div class="page-indicator">Reason 02</div>
+            <h1 class="slide-title">금융 데이터 시각화 및 반응형 구조 구현</h1>
+        </div>
+        <div class="slide-body">
+            <p class="core-concept">고밀도 원시 금융 데이터를 가독성 높은 미니멀 그래픽 인터페이스로 치환</p>
+            <ul class="tech-list">
+                <li><strong>Cubic Bezier 곡선 차트 구현:</strong> 복잡한 차트 그리드와 인덱스 축을 비활성화하고, 하드웨어 가속 기반의 부드러운 가격 변동 흐름 선형 드로잉을 학습합니다.</li>
+                <li><strong>TableLayout 기반 격자 가이드라인:</strong> 다중 칼럼 형태의 기업 재무 데이터(PER, PBR, ROE)를 동적 가중치 연산 없이 가로 폭에 맞춰 균등 배분하는 기법을 마스터합니다.</li>
+                <li><strong>화면 폼 릭(Leak) 차단 기법:</strong> 차트 상 터치 좌표를 실제 데이터 수치로 변환하는 단일 인플레이션 캐싱 메커니즘을 훈련합니다.</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <button class="nav-btn" onclick="moveSlide(1)">이전</button>
+            <button class="nav-btn primary" onclick="moveSlide(3)">다음 이유 보기</button>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide-container" id="slide3">
+        <div class="slide-header">
+            <div class="page-indicator">Reason 03</div>
+            <h1 class="slide-title">가혹한 실시간 환경에서의 상태 무결성 제어</h1>
+        </div>
+        <div class="slide-body">
+            <p class="core-concept">초 단위로 등락하는 주가 변동성 스트림 유효성 및 데이터 동기화 확보</p>
+            <ul class="tech-list">
+                <li><strong>DiffUtil 백그라운드 스레드 격리:</strong> RecyclerView 바인딩 시 무거운 전체 갱신을 차단하고 변동된 세부 사항만 실시간으로 정밀 교체합니다.</li>
+                <li><strong>Sealed Class 기반 유한 상태 머신(FSM):</strong> 적립식 예약 매수 설정 단계에서 입력 오류 및 정의되지 않은 비정상 상태의 난입을 물리적으로 차단합니다.</li>
+                <li><strong>동적 데이터 바인딩 아키텍처:</strong> 손익 변동에 대응해 메모리 유실 없이 시스템 런타임 캐시 컬러 리소스를 타겟 뷰에 실시간 매핑하는 패턴을 체득합니다.</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <button class="nav-btn" onclick="moveSlide(2)">이전</button>
+            <button class="nav-btn primary" onclick="alert('발표 자료 검증 완료. 과제 제출 단계로 진입하십시오.')">종료</button>
+        </div>
+    </div>
+
+    <script>
+        function moveSlide(slideIndex) {
+            document.querySelectorAll('.slide-container').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById('slide' + slideIndex).classList.add('active');
+        }
+    </script>
+</body>
+</html>
