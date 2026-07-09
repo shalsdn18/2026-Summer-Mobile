@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="24dp">
+
+    <!-- 상단 뒤로가기 화살표 -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:contentDescription="뒤로가기"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 메인 메세지 타이틀 -->
+    <TextView
+        android:id="@+id/tvAuthTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="토스 인증서로 본인인증합니다."
+        android:textColor="#191F28"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 본인인증 정보 세부 카드 영역 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutInfoCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthTitle"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/iconToss"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="#1A3182F6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvInfoMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="토스은행 본인인증"
+            android:textColor="#191F28"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@id/iconToss"
+            app:layout_constraintStart_toEndOf="@id/iconToss" />
+
+        <TextView
+            android:id="@+id/tvInfoSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="토스은행\n2026.07.09 18:00 까지"
+            android:textColor="#8B95A1"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvInfoMain"
+            app:layout_constraintStart_toStartOf="@id/tvInfoMain" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 하단 고정 인증하기 버튼 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmitAuth"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="인증하기"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#3182F6"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

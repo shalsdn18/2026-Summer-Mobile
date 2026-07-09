@@ -3,7 +3,9 @@ plugins {
 }
 
 android {
-    namespace = "kr.hnu.ice.julymyapplication"
+    // image_588133.png의 물리 패키지 트리 구조와 일치하도록 수정
+    namespace = "kr.hnu.ice.tossapplication"
+
     buildFeatures {
         viewBinding = true
     }
@@ -14,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "kr.hnu.ice.julymyapplication"
+        applicationId = "kr.hnu.ice.tossapplication"
         minSdk = 29
         targetSdk = 37
         versionCode = 1
@@ -42,8 +44,12 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    
+    // 생체 인증 라이브러리 추가 (7/8 마일스톤 필수 컴포넌트)
+    implementation("androidx.biometric:biometric:1.1.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 }
-
