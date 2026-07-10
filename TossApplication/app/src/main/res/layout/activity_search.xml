@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- ================= 상단 통합 검색 바 영역 ================= -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="뒤로가기"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etSearchInput"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/keypad_gray_bg"
+        android:backgroundTint="#F2F4F6"
+        android:hint="'배당주'를 검색해보세요"
+        android:textColorHint="#8B95A1"
+        android:textColor="#191F28"
+        android:textSize="15sp"
+        android:paddingHorizontal="16dp"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ================= 본문 스크롤 콘텐츠 스트림 ================= -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/etSearchInput"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:paddingBottom="80dp"> <!-- 하단 스크롤 차단 가드 패딩 주입 -->
+
+            <!-- [1] 실시간 이슈 섹션 -->
+            <TextView
+                android:id="@+id/tvHeaderIssue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="실시간 이슈 〉"
+                android:textColor="#191F28"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTimeIssue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘 13:44 기준"
+                android:textColor="#ADB5BD"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvHeaderIssue"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layoutIssueList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvHeaderIssue">
+                <!-- 1위 -->
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="44dp">
+                    <TextView android:id="@+id/num1" android:layout_width="24dp" android:layout_height="match_parent" android:text="1" android:textColor="#8B95A1" android:textStyle="bold" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_toEndOf="@id/num1" android:text="양시장 급등 사이드카" android:textColor="#191F28" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" android:text="▲" android:textColor="#F04452" android:gravity="center_vertical" android:textSize="12sp"/>
+                </RelativeLayout>
+                <!-- 2위 -->
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="44dp">
+                    <TextView android:id="@+id/num2" android:layout_width="24dp" android:layout_height="match_parent" android:text="2" android:textColor="#8B95A1" android:textStyle="bold" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_toEndOf="@id/num2" android:text="코스피 · 코스닥 급등" android:textColor="#191F28" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" android:text="▼" android:textColor="#3182F6" android:gravity="center_vertical" android:textSize="12sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- [2] 인기 주식 섹션 -->
+            <TextView
+                android:id="@+id/tvHeaderStocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인기 주식 〉"
+                android:textColor="#191F28"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginTop="28dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutIssueList"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layoutStockList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvHeaderStocks">
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="44dp">
+                    <TextView android:id="@+id/sNum1" android:layout_width="24dp" android:layout_height="match_parent" android:text="1" android:textColor="#191F28" android:textStyle="bold" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_toEndOf="@id/sNum1" android:text="삼성전자" android:textColor="#191F28" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" android:text="+6.9%" android:textColor="#F04452" android:gravity="center_vertical" android:textStyle="bold" android:textSize="15sp"/>
+                </RelativeLayout>
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="44dp">
+                    <TextView android:id="@+id/sNum2" android:layout_width="24dp" android:layout_height="match_parent" android:text="2" android:textColor="#191F28" android:textStyle="bold" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_toEndOf="@id/sNum2" android:text="SK하이닉스" android:textColor="#191F28" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" android:text="+3.9%" android:textColor="#F04452" android:gravity="center_vertical" android:textStyle="bold" android:textSize="15sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- [3] 인기 채권 섹션 -->
+            <TextView
+                android:id="@+id/tvHeaderBonds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인기 채권 〉"
+                android:textColor="#191F28"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginTop="28dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutStockList"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layoutBondList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/tvHeaderBonds">
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="54dp">
+                    <TextView android:id="@+id/bNum1" android:layout_width="24dp" android:layout_height="match_parent" android:text="1" android:textColor="#8B95A1" android:gravity="center_vertical" android:textSize="15sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toEndOf="@id/bNum1" android:text="미국 국채\n23년 10개월 후 만기" android:textColor="#191F28" android:layout_centerVertical="true" android:textSize="14sp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentEnd="true" android:text="연 8.32%" android:textColor="#3182F6" android:gravity="center_vertical" android:textStyle="bold" android:textSize="15sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- [4] 주식 골라보기 섹션 -->
+            <TextView
+                android:id="@+id/tvHeaderPick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주식 골라보기"
+                android:textColor="#191F28"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutBondList"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체보기 〉"
+                android:textColor="#8B95A1"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvHeaderPick"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/tvHeaderPick">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal">
+                    <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="📊 아직 저렴한 가치주" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" android:layout_marginEnd="8dp" app:cornerRadius="10dp"/>
+                    <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="🌲 꾸준한 배당주" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" android:layout_marginEnd="8dp" app:cornerRadius="10dp"/>
+                    <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="40dp" android:text="❤️ 쌍끌이" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" app:cornerRadius="10dp"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

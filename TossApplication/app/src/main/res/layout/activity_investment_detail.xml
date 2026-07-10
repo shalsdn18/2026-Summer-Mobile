@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:paddingBottom="80dp"> <!-- 스크롤 락 가드 확보 -->
+
+        <!-- ================= [1] TOOLBAR LAYER ================= -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:src="@android:drawable/ic_menu_revert"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDropdownAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본계좌 ▽"
+            android:textColor="#4E5968"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/btnBack"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- ================= [2] INVESTMENT HEADER ================= -->
+        <TextView
+            android:id="@+id/tvDetailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 투자 ⓘ"
+            android:textColor="#8B95A1"
+            android:textSize="14sp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvDetailTotalAsset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7,222,719원"
+            android:textColor="#191F28"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailLabel"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTaxInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⊙ 예상 수수료 · 세금 포함"
+            android:textColor="#ADB5BD"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailTotalAsset"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <!-- ================= [3] METRICS MATRIX GROUP ================= -->
+        <View android:id="@+id/divMatrix" android:layout_width="match_parent" android:layout_height="1dp" android:background="#F2F4F6" android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@id/tvTaxInfo"/>
+
+        <!-- 원금 -->
+        <TextView android:id="@+id/lblPrincipal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="원금" android:textColor="#8B95A1" android:textSize="15sp" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/divMatrix" app:layout_constraintStart_toStartOf="parent"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5,615,748원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblPrincipal" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 총 수익 -->
+        <TextView android:id="@+id/lblTotalProfit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="총 수익" android:textColor="#8B95A1" android:textSize="15sp" android:layout_marginTop="14dp" app:layout_constraintTop_toBottomOf="@id/lblPrincipal" app:layout_constraintStart_toStartOf="parent"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+1,606,971원 (28.6%)" android:textColor="#F04452" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblTotalProfit" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 일간 수익 -->
+        <TextView android:id="@+id/lblDailyProfit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="일간 수익 ⓘ" android:textColor="#8B95A1" android:textSize="15sp" android:layout_marginTop="14dp" app:layout_constraintTop_toBottomOf="@id/lblTotalProfit" app:layout_constraintStart_toStartOf="parent"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+51,603원 (0.9%)" android:textColor="#F04452" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblDailyProfit" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- 투자 비중 보기 배너 -->
+        <TextView
+            android:id="@+id/btnProportionBanner"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="🍩  투자 비중 보기 〉"
+            android:textColor="#4E5968"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="12dp"
+            android:background="#053182F6"
+            app:layout_constraintTop_toBottomOf="@id/lblDailyProfit"/>
+
+        <!-- ================= [4] TABS & FILTER CHIPS ================= -->
+        <TextView
+            android:id="@+id/tvSectionFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본 ▽"
+            android:textColor="#4E5968"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/btnProportionBanner"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/layoutSubTabs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvSectionFilter">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="전체" android:textColor="#191F28" android:textStyle="bold" android:textSize="16sp" android:layout_marginEnd="20dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="국내주식" android:textColor="#8B95A1" android:textSize="16sp" android:layout_marginEnd="20dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="해외주식" android:textColor="#8B95A1" android:textSize="16sp"/>
+        </LinearLayout>
+
+        <!-- ================= [5] DETAILED HOLDING STOCK LIST ================= -->
+        <TextView
+            android:id="@+id/tvDomesticHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="국내주식\n673,515원 +226.5%"
+            android:textColor="#191F28"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutSubTabs"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <!-- 종목 1: 삼성전자 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailItemSamsung"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDomesticHeader">
+            <View android:id="@+id/imgIcon1" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A3182F6" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            <TextView android:id="@+id/tvName1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="삼성전자" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/imgIcon1" app:layout_constraintStart_toEndOf="@id/imgIcon1"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgIcon1" app:layout_constraintStart_toStartOf="@id/tvName1"/>
+            <TextView android:id="@+id/tvPrice1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="594,000원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/imgIcon1" app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+457,700 (335.8%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgIcon1" app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 종목 2: 현대무벡스 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailItemMuvex"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintTop_toBottomOf="@id/detailItemSamsung">
+            <View android:id="@+id/imgIcon2" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A00C853" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            <TextView android:id="@+id/tvName2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="현대무벡스" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/imgIcon2" app:layout_constraintStart_toEndOf="@id/imgIcon2"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgIcon2" app:layout_constraintStart_toStartOf="@id/tvName2"/>
+            <TextView android:id="@+id/tvPrice2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24,000원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/imgIcon2" app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+7,870 (48.7%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgIcon2" app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 종목 3: 한투 ETN -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailItemEtn"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintTop_toBottomOf="@id/detailItemMuvex">
+            <View android:id="@+id/imgIcon3" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A4E5968" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            <TextView android:id="@+id/tvName3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="한투 KIS CD금리투자 ETN" android:textColor="#191F28" android:textSize="15sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/imgIcon3" app:layout_constraintStart_toEndOf="@id/imgIcon3"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgIcon3" app:layout_constraintStart_toStartOf="@id/tvName3"/>
+            <TextView android:id="@+id/tvPrice3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="55,515원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/imgIcon3" app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+1,690 (3.1%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgIcon3" app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout> <!-- parent bottom 제약을 완전 제거하여 스크롤 충돌 원천 방쇄 -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

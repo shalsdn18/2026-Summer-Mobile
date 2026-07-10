@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:paddingBottom="80dp"> <!-- 스크롤 락 바인딩 방지 패딩 -->
+
+        <!-- 툴바 (터치 영역 48dp 확보) -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:src="@android:drawable/ic_menu_revert"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="뒤로가기"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- 메인 헤더 타이틀 문구 -->
+        <TextView
+            android:id="@+id/tvAiHeaderSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="투자의 주도권을 가질 수 있도록"
+            android:textColor="#3182F6"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvAiHeaderMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="토스증권 AI를 소개할게요"
+            android:textColor="#191F28"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvAiHeaderSub"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- ================= CARD 1: 시그널 (변동이유) ================= -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSignal"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="40dp"
+            app:cardBackgroundColor="#F2F4F6"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tvAiHeaderMain">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <TextView android:id="@+id/lblCard1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="이유를 아는 주도권" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="내 주식이 왜 움직였는지\n알려주는 시그널" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="6dp" app:layout_constraintTop_toBottomOf="@id/lblCard1" app:layout_constraintStart_toStartOf="parent"/>
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@android:drawable/ic_media_play" android:contentDescription="시그널" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:tint="#ADB5BD"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= CARD 2: 어닝콜 (라이브) ================= -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardEarningCall"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#F2F4F6"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardSignal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <TextView android:id="@+id/lblCard2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="숫자 너머를 보는 주도권" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="글로벌 CEO에게\n직접 듣는 어닝콜" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="6dp" app:layout_constraintTop_toBottomOf="@id/lblCard2" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="• 라이브" android:textColor="#3182F6" android:textSize="11sp" android:textStyle="bold" android:background="#FFFFFF" android:paddingHorizontal="6dp" android:paddingVertical="2dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@android:drawable/ic_media_play" android:contentDescription="어닝콜" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:tint="#ADB5BD"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= CARD 3: 실시간 이슈 (시장 흐름) ================= -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRealtimeIssue"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#F2F4F6"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardEarningCall">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <TextView android:id="@+id/lblCard3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="시장 흐름을 읽는 주도권" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="이슈로 투자 기회를 찾는\n실시간 이슈" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="6dp" app:layout_constraintTop_toBottomOf="@id/lblCard3" app:layout_constraintStart_toStartOf="parent"/>
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@android:drawable/ic_media_play" android:contentDescription="실시간 이슈" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:tint="#ADB5BD"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= CARD 4: 증시 일정 (기회 선점) ================= -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#F2F4F6"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardRealtimeIssue">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+                <TextView android:id="@+id/lblCard4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="기회를 선점하는 주도권" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="주요 증시 일정을\n미리 확인하는 투자 캘린더" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="6dp" app:layout_constraintTop_toBottomOf="@id/lblCard4" app:layout_constraintStart_toStartOf="parent"/>
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@android:drawable/ic_media_play" android:contentDescription="투자 캘린더" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:tint="#ADB5BD"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

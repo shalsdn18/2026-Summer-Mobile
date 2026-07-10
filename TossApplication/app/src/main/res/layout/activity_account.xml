@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F4F6"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- 상단 헤더 툴바 레이어 수정 -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTabAsset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자산"
+            android:textColor="#191F28"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTabAnalysis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수익분석"
+            android:textColor="#8B95A1"
+            android:textSize="16sp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toTopOf="@id/tvTabAsset"
+            app:layout_constraintStart_toEndOf="@id/tvTabAsset"/>
+
+        <!-- 메인 종합 자산 정보 카드 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMainAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTabAsset">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/tvAccountNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기본계좌 169-01-038106"
+                    android:textColor="#8B95A1"
+                    android:textSize="13sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvAccountBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10,837,873원"
+                    android:textColor="#191F28"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/tvAccountNumber"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!-- 제어 버튼 인터페이스 세트 -->
+                <LinearLayout
+                    android:id="@+id/layoutAccountButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/tvAccountBalance">
+                    <Button android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="채우기" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_marginEnd="4dp"/>
+                    <Button android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="보내기" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_marginEnd="4dp"/>
+                    <Button android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:text="환전" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+                </LinearLayout>
+
+                <View android:id="@+id/divider1" android:layout_width="match_parent" android:layout_height="1dp" android:background="#F2F4F6" android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@id/layoutAccountButtons"/>
+
+                <!-- 원화 세부 잔액 데이터 -->
+                <TextView android:id="@+id/lblKrw" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="원화" android:textColor="#8B95A1" android:textSize="13sp" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/divider1" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:id="@+id/valKrw" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1,842,302원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblKrw" app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- 달러 세부 잔액 데이터 -->
+                <TextView android:id="@+id/lblUsd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="달러" android:textColor="#8B95A1" android:textSize="13sp" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/lblKrw" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:id="@+id/valUsd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$1,042.50 (1,568,128원)" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblUsd" app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- 국내 주식 가치 데이터 -->
+                <TextView android:id="@+id/lblDomestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="국내주식" android:textColor="#8B95A1" android:textSize="13sp" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/lblUsd" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:id="@+id/valDomestic" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="661,915원 +220.9%" android:textColor="#F04452" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblDomestic" app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- 해외 주식 가치 데이터 -->
+                <TextView android:id="@+id/lblForeign" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="해외주식" android:textColor="#8B95A1" android:textSize="13sp" android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@id/lblDomestic" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:id="@+id/valForeign" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="6,547,720원 +21.0%" android:textColor="#F04452" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/lblForeign" app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- 대기중인 주문 배너 레이어 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#E8F4F4"
+                    android:layout_marginTop="20dp"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/lblForeign">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="대기중인 주문" android:textColor="#00838F" android:textSize="14sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="해외주식 50건" android:textColor="#00838F" android:textSize="14sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 7월 실현 수익 요약 카드 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProfitSummary"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardMainAccount">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="20dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7월 수익" android:textColor="#191F28" android:textSize="15sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+112,316원" android:textColor="#F04452" android:textSize="15sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 서브 메뉴 목록 리스트 시스템 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMenuList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/cardProfitSummary"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView android:layout_width="match_parent" android:layout_height="50dp" android:text="지금까지 받은 대여료 〉" android:textColor="#4E5968" android:textSize="15sp" android:gravity="center_vertical" android:paddingHorizontal="12dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="50dp" android:text="거래 · 입출금 · 환전 내역 〉" android:textColor="#4E5968" android:textSize="15sp" android:gravity="center_vertical" android:paddingHorizontal="12dp"/>
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" android:paddingHorizontal="12dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:text="주문 내역" android:textColor="#4E5968" android:textSize="15sp" android:gravity="center_vertical"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:text="이번 달 906건 〉" android:textColor="#8B95A1" android:textSize="14sp" android:gravity="center_vertical" android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

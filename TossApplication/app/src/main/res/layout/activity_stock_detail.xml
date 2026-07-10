@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- 1. 독립 스크롤 가능 콘텐츠 영역 -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layoutOrderButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <!-- 상단 헤더 툴바 (터치 영역 48dp 확보) -->
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:src="@android:drawable/ic_menu_revert"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- 실적 안내 알림 배너 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutReportBanner"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="#F2F4F6"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@id/btnBack">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📢 2026년 6월 실적이 나왔어요"
+                    android:textColor="#4E5968"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 주식 기본 정보 헤더 영역 -->
+            <TextView
+                android:id="@+id/tvStockDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="삼성전자"
+                android:textColor="#191F28"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutReportBanner"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStockDetailPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="292,500원"
+                android:textColor="#191F28"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvStockDetailName"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStockDetailProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="어제보다 +14,500원 (5.2%)"
+                android:textColor="#F04452"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/tvStockDetailPrice"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- 내장 탭 인덱스 텍스트 세트 -->
+            <TextView
+                android:id="@+id/tvTabChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="차트"
+                android:textColor="#191F28"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="28dp"
+                app:layout_constraintTop_toBottomOf="@id/tvStockDetailProfit"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="호가  내 주식  종목정보  커뮤니티"
+                android:textColor="#8B95A1"
+                android:textSize="15sp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintTop_toTopOf="@id/tvTabChart"
+                app:layout_constraintStart_toEndOf="@id/tvTabChart" />
+
+            <!-- 차트 캔버스 더미 컨테이너 레이어 -->
+            <View
+                android:id="@+id/viewChartCanvas"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="24dp"
+                android:background="#05F2F4F6"
+                app:layout_constraintTop_toBottomOf="@id/tvTabChart"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <!-- 차트 내부 지표 텍스트 상하단 고정 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최고 293,000원"
+                android:textColor="#8B95A1"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/viewChartCanvas"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최저 282,000원"
+                android:textColor="#8B95A1"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/viewChartCanvas"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <!-- 타임프레임 셀렉터 바인딩 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                app:layout_constraintTop_toBottomOf="@id/viewChartCanvas">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="1일" android:textColor="#191F28" android:textStyle="bold" android:gravity="center" android:background="#F2F4F6" android:paddingVertical="6dp"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="1주" android:textColor="#8B95A1" android:gravity="center"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="3달" android:textColor="#8B95A1" android:gravity="center"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="1년" android:textColor="#8B95A1" android:gravity="center"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="5년" android:textColor="#8B95A1" android:gravity="center"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="전체" android:textColor="#8B95A1" android:gravity="center"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 2. 최하단 고정 스티키 주문 버튼 패널 -->
+    <LinearLayout
+        android:id="@+id/layoutOrderButtons"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 판매하기 (Blue) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSell"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="판매하기"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#3182F6"
+            app:cornerRadius="14dp"
+            android:layout_marginEnd="8dp"/>
+
+        <!-- 구매하기 (Red) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBuy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="구매하기"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#F04452"
+            app:cornerRadius="14dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

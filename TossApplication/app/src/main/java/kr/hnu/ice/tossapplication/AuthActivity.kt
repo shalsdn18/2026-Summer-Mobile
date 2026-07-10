@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-// 아래 라인을 반드시 추가해야 레퍼런스 오류가 해결됩니다.
 import kr.hnu.ice.tossapplication.databinding.ActivityAuthBinding
 import java.util.concurrent.Executor
 
@@ -22,8 +21,8 @@ class AuthActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         executor = ContextCompat.getMainExecutor(this)
-        
-        // 1. BiometricPrompt 콜백 정의
+
+        // 실제 생체 인식 콜백 엔진 정의 (운영 전환 대비용)
         biometricPrompt = BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                 super.onAuthenticationError(errorCode, errString)
@@ -32,32 +31,44 @@ class AuthActivity : AppCompatActivity() {
 
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
-                Toast.makeText(applicationContext, "인증 성공", Toast.LENGTH_SHORT).show()
-                
-                // 메인 자산 대시보드 화면으로 이동
-                startActivity(Intent(this@AuthActivity, MainActivity::class.java))
-                finish()
+                navigateToMain()
             }
 
             override fun onAuthenticationFailed() {
                 super.onAuthenticationFailed()
-                Toast.makeText(applicationContext, "인증 실패: 지문을 다시 인식해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "인증 실패", Toast.LENGTH_SHORT).show()
             }
         })
 
-        // 2. 모달 팝업 정보 설정 (toss인증.jpg의 텍스트 매핑)
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("지문으로 인증해주세요")
             .setNegativeButtonText("취소")
             .build()
 
-        // 3. 이벤트 리스너 바인딩
-        binding.btnSubmitAuth.setOnClickListener {
-            biometricPrompt.authenticate(promptInfo)
+        // ==========================================
+        // 새 버튼 인터랙션 연결 및 테스트용 바이패스 이식
+        // ==========================================
+
+        // 1. 생체인식으로 잠금 해제 버튼 클릭 시
+        binding.btnBiometricAuth.setOnClickListener {
+            // [테스트 가속 가드] 실제 기기 연동을 원할 시 아래 주석을 풀고 navigateToMain()을 주석처리하십시오.
+            // biometricPrompt.authenticate(promptInfo)
+
+            Toast.makeText(applicationContext, "테스트 프리패스: 생체인식 성공", Toast.LENGTH_SHORT).show()
+            navigateToMain()
         }
 
-        binding.btnBack.setOnClickListener {
-            finish()
+        // 2. 비밀번호로 잠금 해제 버튼 클릭 시
+        binding.btnPasswordAuth.setOnClickListener {
+            // 즉시 통과 대신 실제 비밀번호 입력 패널 화면으로 이동
+            val intent = Intent(this@AuthActivity, PasswordActivity::class.java)
+            startActivity(intent)
         }
+    }
+
+    private fun navigateToMain() {
+        val intent = Intent(this@AuthActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

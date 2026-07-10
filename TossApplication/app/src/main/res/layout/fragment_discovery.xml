@@ -1,16 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:fillViewport="true">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDiscovery"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:paddingBottom="80dp">
+
+        <!-- ================= [1] TOP HEADER ================= -->
+        <TextView
+            android:id="@+id/tvDiscoveryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="발견"
+            android:textColor="#191F28"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDiscoveryKospi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="코스피 7,637.23 +4.7%"
+            android:textColor="#F04452"
+            android:textSize="13sp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvDiscoveryTitle"
+            app:layout_constraintStart_toEndOf="@id/tvDiscoveryTitle" />
+
+        <!-- ================= [2] CATEGORY QUICK CHIP SYSTEM ================= -->
+        <HorizontalScrollView
+            android:id="@+id/scrollCategoryChips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tvDiscoveryTitle">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+                <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="44dp" android:text="🇰🇷 국내주식" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" android:layout_marginEnd="8dp" app:cornerRadius="12dp"/>
+                <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="44dp" android:text="🇺🇸 해외주식" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" android:layout_marginEnd="8dp" app:cornerRadius="12dp"/>
+                <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="44dp" android:text="↗ 옵션" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" android:layout_marginEnd="8dp" app:cornerRadius="12dp"/>
+                <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="44dp" android:text="🎫 채권" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" android:layout_marginEnd="8dp" app:cornerRadius="12dp"/>
+                <Button style="@style/Widget.MaterialComponents.Button.UnelevatedButton" android:layout_width="wrap_content" android:layout_height="44dp" android:text="📊 ETF" android:backgroundTint="#F2F4F6" android:textColor="#4E5968" app:cornerRadius="12dp"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- ================= [3] MACRO EVENT GRID PANEL ================= -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMacroGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/scrollCategoryChips">
+
+            <TextView
+                android:id="@+id/lblEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4일 뒤 이벤트"
+                android:textColor="#8B95A1"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/valEvent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="근원 소비자물가지수 발표(전월 대비)"
+                android:textColor="#191F28"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintTop_toBottomOf="@id/lblEvent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/dividerGrid"/>
+
+            <View
+                android:id="@+id/dividerGrid"
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:background="#E5E8EB"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.55"/>
+
+            <TextView
+                android:id="@+id/lblGridKospi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코스피"
+                android:textColor="#8B95A1"
+                android:textSize="12sp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dividerGrid"/>
+
+            <TextView
+                android:id="@+id/valGridKospi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7,637.23 +4.7%"
+                android:textColor="#F04452"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/lblGridKospi"
+                app:layout_constraintStart_toStartOf="@id/lblGridKospi"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ================= [4] REALTIME SIGNAL BANNER ================= -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutRealtimeBanner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="#053182F6"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutMacroGrid">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✨ 실시간 이슈"
+                android:textColor="#3182F6"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9 반도체발 증시 급등 ▲"
+                android:textColor="#191F28"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ================= [5] TREND CHART HEADER ================= -->
+        <TextView
+            android:id="@+id/tvTrendHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실시간 차트"
+            android:textColor="#191F28"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutRealtimeBanner"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <HorizontalScrollView
+            android:id="@+id/scrollTrendTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tvTrendHeader">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="거래대금" android:textColor="#191F28" android:textStyle="bold" android:textSize="15sp" android:paddingVertical="8dp" android:layout_marginEnd="20dp" android:background="@android:color/transparent"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="거래량" android:textColor="#8B95A1" android:textSize="15sp" android:layout_marginEnd="20dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="급상승" android:textColor="#8B95A1" android:textSize="15sp" android:layout_marginEnd="20dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="급하락" android:textColor="#8B95A1" android:textSize="15sp" android:layout_marginEnd="20dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="인기" android:textColor="#8B95A1" android:textSize="15sp"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- ================= [6] RANKING DATA LIST ================= -->
+        <!-- Rank 1: 삼성전자 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rankItem1"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/scrollTrendTabs">
+            <TextView android:id="@+id/tvNum1" android:layout_width="20dp" android:layout_height="wrap_content" android:text="1" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            <View android:id="@+id/imgRank1" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A3182F6" android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@id/tvNum1"/>
+            <TextView android:id="@+id/tvRankName1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="삼성전자" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/imgRank1" app:layout_constraintStart_toEndOf="@id/imgRank1"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="294,000원 +5.7%" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgRank1" app:layout_constraintStart_toStartOf="@id/tvRankName1"/>
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Rank 2: SK하이닉스 레버리지 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rankItem2"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintTop_toBottomOf="@id/rankItem1">
+            <TextView android:id="@+id/tvNum2" android:layout_width="20dp" android:layout_height="wrap_content" android:text="2" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            <View android:id="@+id/imgRank2" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A3182F6" android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@id/tvNum2"/>
+            <TextView android:id="@+id/tvRankName2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="KODEX SK하이닉스단일종목레버리지" android:textColor="#191F28" android:textSize="15sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/imgRank2" app:layout_constraintStart_toEndOf="@id/imgRank2"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22,690원 +3.4%" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgRank2" app:layout_constraintStart_toStartOf="@id/tvRankName2"/>
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_off" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- [핵심 요구사항] Rank 2와 Rank 3 사이에 인젝션되는 커뮤니티 추천 폼 카드 배너 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCommunityInjected"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="#F2F4F6"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/rankItem2">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="16dp">
+                <TextView android:id="@+id/tvFire" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔥" android:textSize="20sp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+                <TextView android:id="@+id/tvCommMain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="사람들이 많이 얘기하고 있어요" android:textColor="#191F28" android:textSize="14sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@id/tvCommSub" app:layout_constraintStart_toEndOf="@id/tvFire" app:layout_constraintVertical_chainStyle="packed"/>
+                <TextView android:id="@+id/tvCommSub" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="커뮤니티 새 글 급상승 〉" android:textColor="#4E5968" android:textSize="12sp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/tvCommMain" app:layout_constraintStart_toStartOf="@id/tvCommMain"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Rank 3: SK하이닉스 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rankItem3"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/cardCommunityInjected"
+            app:layout_constraintStart_toStartOf="parent">
+            <TextView android:id="@+id/tvNum3" android:layout_width="20dp" android:layout_height="wrap_content" android:text="3" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            <View android:id="@+id/imgRank3" android:layout_width="40dp" android:layout_height="40dp" android:background="#1AF04452" android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toEndOf="@id/tvNum3"/>
+            <TextView android:id="@+id/tvRankName3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SK하이닉스" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/imgRank3" app:layout_constraintStart_toEndOf="@id/imgRank3"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2,233,000원 +2.1%" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/imgRank3" app:layout_constraintStart_toStartOf="@id/tvRankName3"/>
+            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

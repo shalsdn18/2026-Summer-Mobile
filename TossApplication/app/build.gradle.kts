@@ -49,6 +49,9 @@ dependencies {
     // 생체 인증 라이브러리 추가 (7/8 마일스톤 필수 컴포넌트)
     implementation("androidx.biometric:biometric:1.1.0")
 
+    // 자산 비중 시각화 차트 라이브러리 (MPAndroidChart)
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
