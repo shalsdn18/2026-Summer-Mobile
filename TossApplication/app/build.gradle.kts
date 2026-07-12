@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -51,6 +52,21 @@ dependencies {
 
     // 자산 비중 시각화 차트 라이브러리 (MPAndroidChart)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // 이미지 로딩 및 캐싱 (Coil)
+    implementation("io.coil-kt:coil:2.6.0")
+
+    // Retrofit & OkHttp
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.okhttp.logging)
+
+    // 로컬 암호화 저장소 (EncryptedSharedPreferences)
+    implementation(libs.androidx.security.crypto)
+
+    // 백그라운드 푸시 알림 (FCM)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import kr.hnu.ice.tossapplication.databinding.ActivityAuthBinding
+import kr.hnu.ice.tossapplication.networking.TossTokenManager
 import java.util.concurrent.Executor
 
 class AuthActivity : AppCompatActivity() {
@@ -19,6 +20,9 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 암호화 저장소 및 토큰 매니저 초기화
+        TossTokenManager.init(this)
 
         executor = ContextCompat.getMainExecutor(this)
 

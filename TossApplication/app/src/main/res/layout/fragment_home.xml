@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -36,7 +37,6 @@
             app:layout_constraintBottom_toBottomOf="@id/tvMainTitle"
             app:layout_constraintStart_toEndOf="@id/tvMainTitle" />
 
-        <!-- [추가] 더보기 버튼 (Far-Right 고정) -->
         <ImageView
             android:id="@+id/btnMenuMore"
             android:layout_width="48dp"
@@ -49,7 +49,6 @@
             app:layout_constraintBottom_toBottomOf="@id/tvMainTitle"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- [추가] 알림용 원형 레드닷 배지 (컴파일 안전성 확보를 위해 미니 CardView 처리) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/viewRedDot"
             android:layout_width="6dp"
@@ -62,7 +61,6 @@
             app:layout_constraintTop_toTopOf="@id/btnMenuMore"
             app:layout_constraintEnd_toEndOf="@id/btnMenuMore" />
 
-        <!-- [추가] 종목 검색 버튼 -->
         <ImageView
             android:id="@+id/btnMenuSearch"
             android:layout_width="48dp"
@@ -75,7 +73,6 @@
             app:layout_constraintBottom_toBottomOf="@id/tvMainTitle"
             app:layout_constraintEnd_toStartOf="@id/btnMenuMore" />
 
-        <!-- [추가] 제미나이 AI 비서 버튼 -->
         <ImageView
             android:id="@+id/btnMenuGemini"
             android:layout_width="48dp"
@@ -121,29 +118,20 @@
             app:layout_constraintTop_toBottomOf="@id/tvAccountTag">
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginEnd="6dp"
-                app:cardBackgroundColor="#E8F4F4" app:cardCornerRadius="16dp" app:cardElevation="0dp">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp" android:gravity="center_vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="대기 중인 주문" android:textColor="#00838F" android:textSize="11sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="해외주식 50건" android:textColor="#00838F" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginEnd="6dp"
+                android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginEnd="8dp"
                 app:cardBackgroundColor="#F2F4F6" app:cardCornerRadius="16dp" app:cardElevation="0dp">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp" android:gravity="center_vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="원화" android:textColor="#4E5968" android:textSize="11sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1,842,302원" android:textColor="#191F28" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="원화" android:textColor="#4E5968" android:textSize="13sp"/>
+                    <TextView android:id="@+id/tvKrwCashValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp" tools:text="1,842,302원"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1"
                 app:cardBackgroundColor="#F2F4F6" app:cardCornerRadius="16dp" app:cardElevation="0dp">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp" android:gravity="center_vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="달러" android:textColor="#4E5968" android:textSize="11sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$1,042.50" android:textColor="#191F28" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="달러" android:textColor="#4E5968" android:textSize="13sp"/>
+                    <TextView android:id="@+id/tvUsdCashValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp" tools:text="$1,042.50"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -165,26 +153,69 @@
             android:id="@+id/tvTotalAssetValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7,211,054원 〉"
             android:textColor="#191F28"
             android:textSize="26sp"
             android:textStyle="bold"
             android:layout_marginTop="4dp"
             app:layout_constraintTop_toBottomOf="@id/tvInvestmentLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="7,211,054원 〉"/>
 
         <TextView
             android:id="@+id/tvTotalProfit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+1,595,216원 (28.4%)"
             android:textColor="#F04452"
             android:textSize="15sp"
             android:layout_marginTop="2dp"
             app:layout_constraintTop_toBottomOf="@id/tvTotalAssetValue"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="+1,595,216원 (28.4%)"/>
 
-        <!-- ================= [5] STOCK SECTION: DOMESTIC ================= -->
+        <!-- [신규 추가] 주식 목록 직전 정렬/필터 세션 제어 레이어 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutFilterBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTotalProfit">
+
+            <TextView
+                android:id="@+id/btnSortFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수익률 높은 순 ∨"
+                android:textColor="#4E5968"
+                android:textSize="14sp"
+                android:background="#F2F4F6"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#F2F4F6"
+                android:padding="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="현재가" android:textSize="12sp" android:textColor="#8B95A1" android:paddingHorizontal="8dp" android:paddingVertical="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="평가금" android:textSize="12sp" android:textColor="#191F28" android:textStyle="bold" android:background="#FFFFFF" android:paddingHorizontal="8dp" android:paddingVertical="4dp"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ================= [5] STOCK SECTION: DOMESTIC (DYNAMIC) ================= -->
         <TextView
             android:id="@+id/tvDomesticHeader"
             android:layout_width="wrap_content"
@@ -194,36 +225,20 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@id/tvTotalProfit"
+            app:layout_constraintTop_toBottomOf="@id/layoutFilterBar"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemSamsung"
+        <!-- [동적 교체] 국내 주식 리사이클러뷰 컨테이너 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDomesticStocks"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/tvDomesticHeader">
-            <View android:id="@+id/iconSamsung" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A3182F6" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
-            <TextView android:id="@+id/nameSamsung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="삼성전자" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/iconSamsung" app:layout_constraintStart_toEndOf="@id/iconSamsung"/>
-            <TextView android:id="@+id/countSamsung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconSamsung" app:layout_constraintStart_toStartOf="@id/nameSamsung"/>
-            <TextView android:id="@+id/priceSamsung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="582,000원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/iconSamsung" app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView android:id="@+id/profitSamsung" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+445,700원 (326.9%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconSamsung" app:layout_constraintEnd_toEndOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tvDomesticHeader"
+            tools:listitem="@layout/item_holding_stock" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemHyundai"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            app:layout_constraintTop_toBottomOf="@id/itemSamsung">
-            <View android:id="@+id/iconHyundai" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A00C853" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
-            <TextView android:id="@+id/nameHyundai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="현대무벡스" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/iconHyundai" app:layout_constraintStart_toEndOf="@id/iconHyundai"/>
-            <TextView android:id="@+id/countHyundai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconHyundai" app:layout_constraintStart_toStartOf="@id/nameHyundai"/>
-            <TextView android:id="@+id/priceHyundai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="23,900원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/iconHyundai" app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView android:id="@+id/profitHyundai" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+7,770원 (48.1%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconHyundai" app:layout_constraintEnd_toEndOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <!-- ================= [추가 6] STOCK SECTION: FOREIGN ================= -->
+        <!-- ================= [6] STOCK SECTION: FOREIGN (DYNAMIC) ================= -->
         <TextView
             android:id="@+id/tvForeignHeader"
             android:layout_width="wrap_content"
@@ -233,38 +248,20 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_marginTop="28dp"
-            app:layout_constraintTop_toBottomOf="@id/itemHyundai"
+            app:layout_constraintTop_toBottomOf="@id/rvDomesticStocks"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- 해외 1: 마이크론 테크놀로지 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemMicron"
+        <!-- [동적 교체] 해외 주식 리사이클러뷰 컨테이너 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOverseasStocks"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/tvForeignHeader">
-            <View android:id="@+id/iconMicron" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A4E5968" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
-            <TextView android:id="@+id/nameMicron" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="마이크론 테크놀로지" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/iconMicron" app:layout_constraintStart_toEndOf="@id/iconMicron"/>
-            <TextView android:id="@+id/countMicron" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0.281617주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconMicron" app:layout_constraintStart_toStartOf="@id/nameMicron"/>
-            <TextView android:id="@+id/priceMicron" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="419,884원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/iconMicron" app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView android:id="@+id/profitMicron" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+207,857원 (98.0%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconMicron" app:layout_constraintEnd_toEndOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tvForeignHeader"
+            tools:listitem="@layout/item_holding_stock" />
 
-        <!-- 해외 2: 엔비디아 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemNvidia"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            app:layout_constraintTop_toBottomOf="@id/itemMicron">
-            <View android:id="@+id/iconNvidia" android:layout_width="40dp" android:layout_height="40dp" android:background="#1A00C853" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"/>
-            <TextView android:id="@+id/nameNvidia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="엔비디아" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" android:layout_marginStart="12dp" app:layout_constraintTop_toTopOf="@id/iconNvidia" app:layout_constraintStart_toEndOf="@id/iconNvidia"/>
-            <TextView android:id="@+id/countNvidia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3.692514주" android:textColor="#8B95A1" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconNvidia" app:layout_constraintStart_toStartOf="@id/nameNvidia"/>
-            <TextView android:id="@+id/priceNvidia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1,126,574원" android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold" app:layout_constraintTop_toTopOf="@id/iconNvidia" app:layout_constraintEnd_toEndOf="parent"/>
-            <TextView android:id="@+id/profitNvidia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+420,715원 (59.6%)" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintBottom_toBottomOf="@id/iconNvidia" app:layout_constraintEnd_toEndOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <!-- ================= [추가 7] ANALYSIS SUMMARY LAYER ================= -->
+        <!-- ================= [7] ANALYSIS SUMMARY LAYER ================= -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardAnalysis"
             android:layout_width="match_parent"
@@ -273,7 +270,7 @@
             app:cardBackgroundColor="#F2F4F6"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/itemNvidia">
+            app:layout_constraintTop_toBottomOf="@id/rvOverseasStocks">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -296,8 +293,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-
-        <!-- ================= [추가 8] PERSONALIZED SERVICE LIST ================= -->
+        <!-- ================= [8] PERSONALIZED SERVICE LIST ================= -->
         <TextView
             android:id="@+id/tvServiceHeader"
             android:layout_width="wrap_content"
@@ -323,8 +319,7 @@
             <TextView android:layout_width="match_parent" android:layout_height="50dp" android:text="✦ AI가 포착한 실시간 이슈 보기 〉" android:textColor="#4E5968" android:textSize="15sp" android:gravity="center_vertical"/>
         </LinearLayout>
 
-
-        <!-- ================= [추가 9] TRANSACTION RANKING CHART ================= -->
+        <!-- ================= [9] TRANSACTION RANKING CHART ================= -->
         <TextView
             android:id="@+id/tvChartHeader"
             android:layout_width="wrap_content"
@@ -337,7 +332,6 @@
             app:layout_constraintTop_toBottomOf="@id/layoutServices"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <!-- 랭킹 1위 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chartItem1"
             android:layout_width="match_parent"
@@ -349,7 +343,6 @@
             <TextView android:id="@+id/chartPrice1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22,455원 +2.3%" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintTop_toBottomOf="@id/chartName1" app:layout_constraintStart_toStartOf="@id/chartName1"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- 랭킹 2위 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chartItem2"
             android:layout_width="match_parent"
@@ -360,8 +353,7 @@
             <TextView android:id="@+id/chartPrice2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2,220,000원 +1.5%" android:textColor="#F04452" android:textSize="13sp" app:layout_constraintTop_toBottomOf="@id/chartName2" app:layout_constraintStart_toStartOf="@id/chartName2"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <!-- ================= [추가 10] LEGAL DISCLAIMER FOOTER ================= -->
+        <!-- ================= [10] LEGAL DISCLAIMER FOOTER ================= -->
         <TextView
             android:id="@+id/tvFooterDisclaimer"
             android:layout_width="match_parent"

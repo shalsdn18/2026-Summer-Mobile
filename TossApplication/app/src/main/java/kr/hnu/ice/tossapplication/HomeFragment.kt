@@ -1,17 +1,35 @@
 package kr.hnu.ice.tossapplication
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
 import kr.hnu.ice.tossapplication.databinding.FragmentHomeBinding
+import kr.hnu.ice.tossapplication.view.*
+import kr.hnu.ice.tossapplication.viewmodel.HomeUiState
+import kr.hnu.ice.tossapplication.viewmodel.HomeViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    
+    // 비동기 예외 가드(BaseViewModel) 상속 구조 뷰모델 결합
+    private val viewModel: HomeViewModel by viewModels()
+
+    private lateinit var domesticAdapter: HoldingStockAdapter
+    private lateinit var overseasAdapter: HoldingStockAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, 
@@ -25,22 +43,49 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
+        initAdapterConfiguration()
+        initStaticClickListeners()
+        observeLiveAssetStream()
+
+        // 실시간 자산 대시보드 갱신 구동
+        viewModel.fetchLiveAssetDashboard()
+    }
+
+    private fun initAdapterConfiguration() {
+        // 아이템 클릭 시 해당 종목 코드를 인텐트에 결합하여 상세 화면으로 즉시 이관 처리
+        val navigateToDetail: (String) -> Unit = { symbol ->
+            val intent = Intent(requireContext(), StockDetailActivity::class.java).apply {
+                putExtra("EXTRA_SYMBOL", symbol)
+            }
+            startActivity(intent)
+        }
+
+        domesticAdapter = HoldingStockAdapter(navigateToDetail)
+        overseasAdapter = HoldingStockAdapter(navigateToDetail)
+
+        binding.rvDomesticStocks.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = domesticAdapter
+        }
+
+        binding.rvOverseasStocks.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = overseasAdapter
+        }
+    }
+
+    private fun initStaticClickListeners() {
         // =================================================================
-        // [1] 우측 상단 액션바 메뉴 리스너 완전 통합 제어 구문
+        // [1] 우측 상단 액션바 메뉴 리스너 및 렉 방지 스택 정적 전환 가드
         // =================================================================
-        
-        // 제미나이 AI 버튼 복구 (AiSignalActivity 연동)
         binding.btnMenuGemini.setOnClickListener {
             val intent = Intent(requireContext(), AiSignalActivity::class.java).apply {
-                // 기존 스택에 액티비티가 있다면 재사용하고 상위 스택을 클리어하여 메모리 오버헤드 방지
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             }
             startActivity(intent)
-            // 화면 전환 애니메이션으로 인한 렉을 방지하기 위해 정적 전환 처리
             activity?.overridePendingTransition(0, 0)
         }
 
-        // 검색 버튼 복구 (SearchActivity 연동)
         binding.btnMenuSearch.setOnClickListener {
             val intent = Intent(requireContext(), SearchActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
@@ -49,7 +94,6 @@ class HomeFragment : Fragment() {
             activity?.overridePendingTransition(0, 0)
         }
 
-        // 더보기 버튼 복구 (레드닷 알림 가드 포함)
         binding.btnMenuMore.setOnClickListener {
             binding.viewRedDot.visibility = View.GONE 
             val intent = Intent(requireContext(), MoreMenuActivity::class.java).apply {
@@ -60,50 +104,78 @@ class HomeFragment : Fragment() {
         }
 
         // =================================================================
-        // [2] 기존 본문 주동 컴포넌트 인터랙션 리스너 가동 채널
+        // [2] 본문 유동 계좌 및 수익분석 내역 연동 채널
         // =================================================================
-        
-        // 계좌보기 버튼 클릭 시
         binding.tvAccountView.setOnClickListener {
-            val intent = Intent(requireContext(), AccountActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), AccountActivity::class.java))
         }
 
-        // 내 투자 타이틀 영역 클릭 시 (InvestmentDetailActivity 연동)
-        binding.tvInvestmentLabel.setOnClickListener {
-            val intent = Intent(requireContext(), InvestmentDetailActivity::class.java)
-            startActivity(intent)
+        val navigateToInvestmentDetail = {
+            startActivity(Intent(requireContext(), InvestmentDetailActivity::class.java))
         }
-
-        // 자산 금액 텍스트 클릭 시 (InvestmentDetailActivity 연동)
-        binding.tvTotalAssetValue.setOnClickListener {
-            val intent = Intent(requireContext(), InvestmentDetailActivity::class.java)
-            startActivity(intent)
-        }
-
-        // 국내주식: 삼성전자 클릭 시 (StockDetailActivity 연동)
-        binding.itemSamsung.setOnClickListener {
-            val intent = Intent(requireContext(), StockDetailActivity::class.java)
-            startActivity(intent)
-        }
-
-        // =================================================================
-        // [3] 기타 더미 하위 컴포넌트 피드백 채널
-        // =================================================================
-        binding.itemMicron.setOnClickListener {
-            Toast.makeText(requireContext(), "마이크론 테크놀로지 분석 레이어로 이동", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.itemNvidia.setOnClickListener {
-            Toast.makeText(requireContext(), "엔비디아 상세 차트 레이어로 이동", Toast.LENGTH_SHORT).show()
-        }
+        binding.tvInvestmentLabel.setOnClickListener { navigateToInvestmentDetail() }
+        binding.tvTotalAssetValue.setOnClickListener { navigateToInvestmentDetail() }
 
         binding.cardAnalysis.setOnClickListener {
-            Toast.makeText(requireContext(), "이번 달 상세 수익분석 리포트 구동", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(requireContext(), OrderHistoryActivity::class.java))
         }
 
         binding.chartItem1.setOnClickListener {
             Toast.makeText(requireContext(), "SK하이닉스 레버리지 주문 바텀시트 호출", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    /**
+     * [Stream Consumer] 뷰모델이 동시 발동시킨 병렬 연산 결과를 UI 스냅샷에 원자적으로 적용
+     */
+    private fun observeLiveAssetStream() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state ->
+                    when (state) {
+                        is HomeUiState.Loading -> { /* 메인 스레드 렉 방지용 프로그레스 바 제어 가능 */ }
+                        is HomeUiState.Success -> {
+                            // A. 2대 핵심 예수금 가상 카드 덤프 바인딩
+                            binding.tvKrwCashValue.text = "${formatCurrency(state.krwCash)}원"
+                            binding.tvUsdCashValue.text = "$${formatCurrency(state.usdCash)}"
+
+                            // B. 내 투자 요약 마스터 패널 텍스트 및 등락률 컬러 인젝션
+                            binding.tvTotalAssetValue.text = "${formatCurrency(state.totalEvaluation)}원 〉"
+                            binding.tvTotalProfit.text = "${formatCurrency(state.totalProfitLossAmount)}원 (${state.totalProfitLossRate}%)"
+
+                            val profitColor = if (state.totalProfitLossRate.startsWith("-")) {
+                                Color.parseColor("#3182F6") // 블루
+                            } else if (state.totalProfitLossRate != "0" && state.totalProfitLossRate != "0.0") {
+                                Color.parseColor("#F04452") // 레드
+                            } else {
+                                Color.parseColor("#191F28")
+                            }
+                            binding.tvTotalProfit.setTextColor(profitColor)
+
+                            // C. 리사이클러 어댑터에 연산 분류된 도메인 리스트 주입 주동 렌더링
+                            domesticAdapter.submitList(state.domesticStocks)
+                            overseasAdapter.submitList(state.overseasStocks)
+                        }
+                        is HomeUiState.Error -> {
+                            Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun formatCurrency(value: String): String {
+        return try {
+            val cleaned = value.replace(",", "")
+            val parsed = cleaned.toDouble()
+            if (parsed % 1 == 0.0) {
+                NumberFormat.getInstance(Locale.KOREA).format(parsed.toLong())
+            } else {
+                String.format("%.2f", parsed)
+            }
+        } catch (e: Exception) {
+            value
         }
     }
 

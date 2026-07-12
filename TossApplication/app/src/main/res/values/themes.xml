@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.TossApplication" parent="Base.Theme.TossApplication" />
+
+    <style name="CircleImageAppearance">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

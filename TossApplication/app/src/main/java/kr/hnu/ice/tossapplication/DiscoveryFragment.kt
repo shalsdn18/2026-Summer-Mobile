@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kr.hnu.ice.tossapplication.databinding.FragmentDiscoveryBinding
+import kr.hnu.ice.tossapplication.view.StockDetailActivity
 
 class DiscoveryFragment : Fragment() {
     private var _binding: FragmentDiscoveryBinding? = null

@@ -171,6 +171,18 @@
                 <TextView android:id="@+id/tvSecLabel6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toEndOf="@id/iconSec6" android:layout_marginStart="16dp" android:layout_centerVertical="true" android:text="커뮤니티  " android:textColor="#191F28" android:textSize="16sp" android:textStyle="bold"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toEndOf="@id/iconSec6" android:layout_marginStart="84dp" android:layout_centerVertical="true" android:text="프로필 · 주제별 커뮤니티" android:textColor="#8B95A1" android:textSize="13sp"/>
             </RelativeLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F2F4F6" android:layout_marginVertical="16dp"/>
+
+            <TextView
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="로그아웃"
+                android:textColor="#8B95A1"
+                android:textSize="14sp"
+                android:gravity="center_vertical"
+                android:background="?attr/selectableItemBackground"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
