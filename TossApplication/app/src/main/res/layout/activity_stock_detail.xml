@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <!-- 상단 뒤로가기 버튼 -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="뒤로가기"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <!-- 종목 헤더 정보 영역 -->
     <LinearLayout
         android:id="@+id/layoutHeader"
@@ -14,7 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/btnBack">
 
         <TextView
             android:id="@+id/tvStockName"

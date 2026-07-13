@@ -41,6 +41,11 @@ class StockDetailActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        // 상단 뒤로가기 버튼 처리
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
         orderbookAdapter = OrderbookAdapter()
         binding.rvOrderbook.apply {
             layoutManager = LinearLayoutManager(this@StockDetailActivity)
