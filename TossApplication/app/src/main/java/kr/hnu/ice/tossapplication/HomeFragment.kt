@@ -76,31 +76,25 @@ class HomeFragment : Fragment() {
 
     private fun initStaticClickListeners() {
         // =================================================================
-        // [1] 우측 상단 액션바 메뉴 리스너 및 렉 방지 스택 정적 전환 가드
+        // [1] 우측 상단 액션바 메뉴 리스너 (기능 복구 및 피드백 강화)
         // =================================================================
         binding.btnMenuGemini.setOnClickListener {
-            val intent = Intent(requireContext(), AiSignalActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            }
+            Toast.makeText(requireContext(), "AI 시그널 레이어를 호출합니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), AiSignalActivity::class.java)
             startActivity(intent)
-            activity?.overridePendingTransition(0, 0)
         }
 
         binding.btnMenuSearch.setOnClickListener {
-            val intent = Intent(requireContext(), SearchActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            }
+            Toast.makeText(requireContext(), "통합 검색 창구를 호출합니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), SearchActivity::class.java)
             startActivity(intent)
-            activity?.overridePendingTransition(0, 0)
         }
 
         binding.btnMenuMore.setOnClickListener {
             binding.viewRedDot.visibility = View.GONE 
-            val intent = Intent(requireContext(), MoreMenuActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            }
+            Toast.makeText(requireContext(), "주식 모으기 화면으로 이동합니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), StockAccumulateActivity::class.java)
             startActivity(intent)
-            activity?.overridePendingTransition(0, 0)
         }
 
         // =================================================================

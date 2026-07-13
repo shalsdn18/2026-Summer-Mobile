@@ -45,6 +45,8 @@
             android:src="@android:drawable/ic_menu_sort_by_size"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="더보기 메뉴"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintTop_toTopOf="@id/tvMainTitle"
             app:layout_constraintBottom_toBottomOf="@id/tvMainTitle"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -58,6 +60,8 @@
             app:cardElevation="0dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:clickable="false"
+            android:focusable="false"
             app:layout_constraintTop_toTopOf="@id/btnMenuMore"
             app:layout_constraintEnd_toEndOf="@id/btnMenuMore" />
 
@@ -69,6 +73,8 @@
             android:src="@android:drawable/ic_menu_search"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="종목 검색"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintTop_toTopOf="@id/tvMainTitle"
             app:layout_constraintBottom_toBottomOf="@id/tvMainTitle"
             app:layout_constraintEnd_toStartOf="@id/btnMenuMore" />
@@ -81,6 +87,8 @@
             android:src="@android:drawable/btn_star_big_on"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="제미나이 AI 비서"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintTop_toTopOf="@id/tvMainTitle"
             app:layout_constraintBottom_toBottomOf="@id/tvMainTitle"
             app:layout_constraintEnd_toStartOf="@id/btnMenuSearch" />
